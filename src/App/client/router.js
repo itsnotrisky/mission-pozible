@@ -3,6 +3,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux'
 
 import store from './store';
+// import routes from './routes';
 
 import HomeContainer from './containers/HomeContainer'
 import DashboardContainer from './containers/DashboardContainer'
@@ -18,8 +19,6 @@ let Routes =
       <IndexRoute component={SigninForm} />
       <Route path='/sign_up' component={SignupForm} />
     </Route>
-    <Route path='/dashboard' component={DashboardContainer}>
-    </Route>
+    <Route path='/dashboard' component={DashboardContainer} />
   </Router>
-
 export default Routes;

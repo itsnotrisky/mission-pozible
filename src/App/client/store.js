@@ -13,19 +13,12 @@ const createStoreWithMiddleware  = compose(
     reactRouterReduxMiddleware,
     createLogger()
   ),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
+  // window.devToolsExtension ? window.devToolsExtension() : f => f
 )
 
 const store = createStore(
   reducers,
   createStoreWithMiddleware
 );
-
-if (module.hot) {
-  module.hot.accept('reducers', () => {
-    const nextRootReducer = require('reducers').default
-    store.replaceReducer(nextRootReducer)
-  })
-}
 
 export default store;

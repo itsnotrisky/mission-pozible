@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form'
+import { Link } from 'react-router'
+import '../../assets/signin.import.css'
 
 class SigninForm extends Component {
   render() {
@@ -23,6 +25,7 @@ class SigninForm extends Component {
           component="input"
           required />
         <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <Link to="sign_up" className="btn btn-lg btn-default btn-block">No account yet? Sign up</Link>
       </form>
     )
   }

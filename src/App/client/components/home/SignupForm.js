@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
-class SigninForm extends Component {
+class SignupForm extends Component {
   render() {
     return (
       <form className="form-signin">
@@ -11,9 +12,10 @@ class SigninForm extends Component {
         <label htmlFor="inputPassword" className="sr-only">Password</label>
         <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
         <button className="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        <Link to="/" className="btn btn-lg btn-default btn-block">Have an account? Sign in</Link>
       </form>
     )
   }
 }
 
-export default SigninForm
+export default SignupForm

@@ -2,15 +2,25 @@
 version: '2'
 
 services:
-  webpack:
+  web:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
       - .:/var/app
       - node_modules:/var/app/node_modules
+      - meteor_local:/var/app/.meteor/local
     ports:
-      - 8080:8080
+      - 3000:3000
+      - 3500:3500
+    links:
+      - db
+    environment:
+      - MONGO_URL=mongodb://db:27017
+  db:
+    image: mongo
 volumes:
   node_modules:
+    driver: local
+  meteor_local:
     driver: local
