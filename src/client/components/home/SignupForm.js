@@ -1,11 +1,25 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router'
 
-const SignupForm = (props) => {
-    const { handleSubmit } = props
+class SignupForm extends Component {
+  showAlert(message) {
+    return (
+      <div className="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {message}
+      </div>
+    )
+  }
+
+  render() {
+    const { handleSubmit, isSignupFail, statusText } = this.props
     return (
       <form className="form-signin" onSubmit={handleSubmit}>
+        { isSignupFail ? this.showAlert(statusText) : '' }
         <label htmlFor="inputName" className="sr-only">Name</label>
         <Field type="text"
           name="inputName"
@@ -34,8 +48,19 @@ const SignupForm = (props) => {
         <Link to="/" className="btn btn-lg btn-default btn-block">Have an account? Sign in</Link>
       </form>
     )
+  }
 }
 
-export default reduxForm({
+const mapStateToProps = function(store) {
+  const { isSignupFail, statusText } = store.user
+  return {
+    isSignupFail,
+    statusText
+  };
+}
+
+SignupForm = reduxForm({
   form: 'signup'
-})(SignupForm)
+})(SignupForm);
+
+export default connect(mapStateToProps)(SignupForm)

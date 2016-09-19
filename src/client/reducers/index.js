@@ -7,7 +7,7 @@ import usersReducer from './usersReducer'
 const reducers = combineReducers({
   routing: routerReducer,
   form: formReducer,
-  users: usersReducer
+  user: usersReducer
 });
 
 export default reducers;
