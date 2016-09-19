@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router'
 
-class SignupForm extends Component {
-  render() {
+const SignupForm = (props) => {
+    const { handleSubmit } = props
     return (
-      <form className="form-signin">
+      <form className="form-signin" onSubmit={handleSubmit}>
         <label htmlFor="inputName" className="sr-only">Name</label>
         <Field type="text"
           name="inputName"
@@ -34,11 +34,8 @@ class SignupForm extends Component {
         <Link to="/" className="btn btn-lg btn-default btn-block">Have an account? Sign in</Link>
       </form>
     )
-  }
 }
 
-SignupForm = reduxForm({
+export default reduxForm({
   form: 'signup'
-})(SignupForm);
-
-export default SignupForm
+})(SignupForm)
