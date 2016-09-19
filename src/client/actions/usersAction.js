@@ -20,6 +20,24 @@ export const signUpFailure = (error) => {
   }
 }
 
+export const signInRequest = () => {
+  return {
+    type: types.SIGNIN_REQUEST
+  }
+}
+
+export const signInSuccess = () => {
+  return {
+    type: types.SIGNIN_SUCCESS
+  }
+}
+
+export const signInFailure = (error) => {
+  return {
+    type: types.SIGNIN_FAILURE,
+    error
+  }
+}
 
 export const createUser = (user) => {
   return (dispatch) => {
@@ -39,5 +57,20 @@ export const createUser = (user) => {
         dispatch(push('/dashboard'))
       }
     })
+  }
+}
+
+export const signInUser = (user) => {
+  return (dispatch) => {
+    dispatch(signInRequest())
+    Meteor.loginWithPassword(user.email, user.password, function(error){
+      if(error){
+        console.log(error)
+        dispatch(signInFailure(error))
+      } else {
+        dispatch(signInSuccess())
+        dispatch(push('/dashboard'))
+      }
+    });
   }
 }

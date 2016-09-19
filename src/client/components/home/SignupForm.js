@@ -51,8 +51,8 @@ class SignupForm extends Component {
   }
 }
 
-const mapStateToProps = function(store) {
-  const { isSignupFail, statusText } = store.user
+const mapStateToProps = function(state) {
+  const { isSignupFail, statusText } = state.user
   return {
     isSignupFail,
     statusText

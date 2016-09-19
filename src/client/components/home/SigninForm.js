@@ -1,12 +1,25 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router'
-import '../../assets/signin.import.css'
 
 class SigninForm extends Component {
-  render() {
+  showAlert(message) {
     return (
-      <form className="form-signin">
+      <div className="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {message}
+      </div>
+    )
+  }
+
+  render() {
+    const { handleSubmit, isSigninFail, statusText } = this.props
+    return (
+      <form className="form-signin" onSubmit={handleSubmit}>
+        { isSigninFail ? this.showAlert(statusText) : '' }
         <h2 className="form-signin-heading">Please sign in</h2>
         <label htmlFor="inputEmail" className="sr-only">Email address</label>
         <Field type="email"
@@ -31,8 +44,16 @@ class SigninForm extends Component {
   }
 }
 
+const mapStateToProps = function(state) {
+  const { isSigninFail, statusText } = state.user
+  return {
+    isSigninFail,
+    statusText
+  };
+}
+
 SigninForm = reduxForm({
   form: 'signin'
 })(SigninForm);
 
-export default SigninForm
+export default connect(mapStateToProps)(SigninForm)

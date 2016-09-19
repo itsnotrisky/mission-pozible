@@ -8,7 +8,7 @@ import store from './store';
 import HomeContainer from './containers/HomeContainer'
 import DashboardContainer from './containers/DashboardContainer'
 
-import SigninForm from './components/home/SigninForm'
+import Signin from './components/home/Signin'
 import Signup from './components/home/Signup'
 import Dashboard from './components/dashboard'
 
@@ -17,7 +17,7 @@ const history = syncHistoryWithStore(browserHistory, store)
 let Routes = 
   <Router history={history}>
     <Route path='/' component={HomeContainer}>
-      <IndexRoute component={SigninForm} />
+      <IndexRoute component={Signin} />
       <Route path='/sign_up' component={Signup} />
     </Route>
     <Route path='/dashboard' component={DashboardContainer}>
