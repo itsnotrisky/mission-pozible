@@ -1,4 +1,5 @@
 import * as types from '../constants/usersConst'
+import { push } from 'react-router-redux';
 
 export const signUpRequest = () => {
   return {
@@ -35,6 +36,7 @@ export const createUser = (user) => {
         dispatch(signUpFailure(error))
       } else {
         dispatch(signUpSuccess())
+        dispatch(push('/dashboard'))
       }
     })
   }
