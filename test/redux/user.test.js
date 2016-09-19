@@ -31,6 +31,33 @@ describe('[Redux] - User: actions', () => {
     };
     expect(actions.signUpFailure(error)).to.deep.equal(expectedAction);
   });
+
+  it('should create an action when signing in', () => {
+    const expectedAction = {
+      type: types.SIGNIN_REQUEST
+    }
+    expect(actions.signInRequest()).to.deep.equal(expectedAction);
+  });
+
+  it('should create an action when successfully signed in', () => {
+    const expectedAction = {
+      type: types.SIGNIN_SUCCESS
+    };
+    expect(actions.signInSuccess()).to.deep.equal(expectedAction);
+  });
+
+  it('should create an action when sign in is failed', () => {
+    const error = {
+      reason: "error message"
+    };
+    const expectedAction = {
+      type: types.SIGNIN_FAILURE,
+      error: {
+        reason: "error message"
+      }
+    };
+    expect(actions.signInFailure(error)).to.deep.equal(expectedAction);
+  });
 });
 
 describe('[Redux] - User: reducers', () => {
@@ -88,6 +115,54 @@ describe('[Redux] - User: reducers', () => {
     expect(
       reducers.default(undefined, {
         type: types.SIGNUP_FAILURE,
+        error: {
+          reason: "error message"
+        }
+      })
+    ).to.deep.equal(expectedReducer);
+  });
+
+  it('should handle SIGNIN_REQUEST', () => {
+    const expectedReducer = {
+      isAuthenticated: false,
+      isAuthenticating: true,
+      isSignupFail: false,
+      isSigninFail: false,
+      statusText: null
+    }
+    expect(
+      reducers.default(undefined, {
+        type: types.SIGNIN_REQUEST
+      })
+    ).to.deep.equal(expectedReducer);
+  });
+
+  it('should handle SIGNIN_SUCCESS', () => {
+    const expectedReducer = {
+      isAuthenticated: true,
+      isAuthenticating: false,
+      isSignupFail: false,
+      isSigninFail: false,
+      statusText: null
+    }
+    expect(
+      reducers.default(undefined, {
+        type: types.SIGNIN_SUCCESS
+      })
+    ).to.deep.equal(expectedReducer);
+  });
+
+  it('should handle SIGNIN_FAILURE', () => {
+    const expectedReducer = {
+      isAuthenticated: false,
+      isAuthenticating: false,
+      isSignupFail: false,
+      isSigninFail: true,
+      statusText: "error message"
+    }
+    expect(
+      reducers.default(undefined, {
+        type: types.SIGNIN_FAILURE,
         error: {
           reason: "error message"
         }
