@@ -39,6 +39,7 @@ describe('[Redux] - User: reducers', () => {
       isAuthenticated: false,
       isAuthenticating: false,
       isSignupFail: false,
+      isSigninFail: false,
       statusText: null
     }
     expect(
@@ -51,6 +52,7 @@ describe('[Redux] - User: reducers', () => {
       isAuthenticated: false,
       isAuthenticating: false,
       isSignupFail: false,
+      isSigninFail: false,
       statusText: null
     }
     expect(
@@ -65,6 +67,7 @@ describe('[Redux] - User: reducers', () => {
       isAuthenticated: false,
       isAuthenticating: false,
       isSignupFail: false,
+      isSigninFail: false,
       statusText: null
     }
     expect(
@@ -79,6 +82,7 @@ describe('[Redux] - User: reducers', () => {
       isAuthenticated: false,
       isAuthenticating: false,
       isSignupFail: true,
+      isSigninFail: false,
       statusText: "error message"
     }
     expect(
