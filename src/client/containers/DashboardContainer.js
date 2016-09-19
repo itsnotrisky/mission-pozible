@@ -1,12 +1,7 @@
-import React, { Component } from 'react'
-// import { connect } from 'react-redux'
+import React from 'react'
 
-class DashboardContainer extends Component {
-  render() {
-    return (
-      <div>DashboardContainer</div>
-    )
-  }
+export const DashboardContainer = () => {
+  return (
+    <div>{this.props.children}</div>
+  )
 }
-
-export default DashboardContainer
