@@ -1,0 +1,16 @@
+FROM alpine:3.4
+
+MAINTAINER spondbob spondbob@eamca.com
+
+# Install Nodejs
+RUN apk add --update nodejs
+
+ENV NODE_ENV test
+
+# Add base code & node modules to app
+ENV app /var/app
+RUN mkdir -p $app
+WORKDIR $app
+ADD . $app
+
+CMD ["npm", "run", "test:watch"]
