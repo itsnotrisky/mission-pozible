@@ -1,18 +1,18 @@
 import * as types from '../constants/usersConst'
 
-const signUpRequest = () => {
+export const signUpRequest = () => {
   return {
     type: types.SIGNUP_REQUEST
   }
 }
 
-const signUpSuccess = () => {
+export const signUpSuccess = () => {
   return {
     type: types.SIGNUP_SUCCESS
   }
 }
 
-const signUpFailure = (error) => {
+export const signUpFailure = (error) => {
   return {
     type: types.SIGNUP_FAILURE,
     error
