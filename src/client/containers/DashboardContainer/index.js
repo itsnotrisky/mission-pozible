@@ -18,9 +18,12 @@ class DashboardContainer extends Component {
   }
 
   content() {
+    const currentUser = Meteor.user()
     return (
       <div>
-        <Header handleSignout={this.handleSignout.bind(this)} />
+        <Header
+          currentUser={currentUser}
+          handleSignout={this.handleSignout.bind(this)} />
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-3 col-md-2">
