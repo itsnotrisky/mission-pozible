@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 
 class HomeContainer extends Component {
-  render() {
+  render () {
     return (
       <div className="container">
-        {this.props.children}
+        { this.props.children }
       </div>
     )
   }
 }
-
 export default HomeContainer
