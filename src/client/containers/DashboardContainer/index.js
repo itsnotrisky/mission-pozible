@@ -9,7 +9,15 @@ class DashboardContainer extends Component {
     this.props.dispatch(actions.signOutUser())
   }
 
-  render() {
+  handleUnauthorized() {
+    this.props.dispatch(actions.unauthorizedAccess())
+  }
+
+  isAUser() {
+    return Meteor.user() ? true : false
+  }
+
+  content() {
     return (
       <div>
         <Header handleSignout={this.handleSignout.bind(this)} />
@@ -23,6 +31,18 @@ class DashboardContainer extends Component {
             </div>
           </div>
         </div>
+      </div>
+    )
+  }
+
+  render() {
+    return (
+      <div>
+        {
+          this.isAUser()
+          ?  this.content()
+          :  this.handleUnauthorized()
+        }
       </div>
     )
   }

@@ -108,3 +108,10 @@ export const signOutUser = (user) => {
     });
   }
 }
+
+export const unauthorizedAccess = () => {
+  return (dispatch) => {
+    dispatch(signInFailure({reason: "Unauthorized Access"}))
+    dispatch(push('/'))
+  }
+}
