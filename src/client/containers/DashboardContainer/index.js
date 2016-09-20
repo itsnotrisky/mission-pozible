@@ -1,12 +1,18 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
+import * as actions from '../../actions/usersAction'
 import Header from './Header'
 import Sidebar from './Sidebar'
 
 class DashboardContainer extends Component {
+  handleSignout() {
+    this.props.dispatch(actions.signOutUser())
+  }
+
   render() {
     return (
       <div>
-        <Header />
+        <Header handleSignout={this.handleSignout.bind(this)} />
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-3 col-md-2">
@@ -22,4 +28,4 @@ class DashboardContainer extends Component {
   }
 }
 
-export default DashboardContainer
+export default connect()(DashboardContainer)

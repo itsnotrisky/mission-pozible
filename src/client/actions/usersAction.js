@@ -39,6 +39,25 @@ export const signInFailure = (error) => {
   }
 }
 
+export const signOutRequest = () => {
+  return {
+    type: types.SIGNOUT_REQUEST
+  }
+}
+
+export const signOutSuccess = () => {
+  return {
+    type: types.SIGNOUT_SUCCESS
+  }
+}
+
+export const signOutFailure = (error) => {
+  return {
+    type: types.SIGNOUT_FAILURE,
+    error
+  }
+}
+
 export const createUser = (user) => {
   return (dispatch) => {
     dispatch(signUpRequest())
@@ -70,6 +89,21 @@ export const signInUser = (user) => {
       } else {
         dispatch(signInSuccess())
         dispatch(push('/dashboard'))
+      }
+    });
+  }
+}
+
+export const signOutUser = (user) => {
+  return (dispatch) => {
+    dispatch(signOutRequest())
+    Meteor.logout(function(error){
+      if(error){
+        console.log(error)
+        dispatch(signOutFailure(error))
+      } else {
+        dispatch(signOutSuccess())
+        dispatch(push('/'))
       }
     });
   }

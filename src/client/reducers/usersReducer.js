@@ -24,21 +24,48 @@ const usersReducer = function(state = initialState, action) {
         isAuthenticating: true,
         isAuthenticated: false,
         isSigninFail: false,
-        statusText: null })
+        statusText: null
+      })
       break
     case types.SIGNIN_SUCCESS:
       return Object.assign({}, state, {
         isAuthenticating: false,
         isAuthenticated: true,
         isSigninFail: false,
-        statusText: null })
+        statusText: null
+      })
       break
     case types.SIGNIN_FAILURE:
       return Object.assign({}, state, {
         isAuthenticating: false,
         isAuthenticated: false,
         isSigninFail: true,
-        statusText: action.error.reason })
+        statusText: action.error.reason
+      })
+      break
+    case types.SIGNOUT_REQUEST:
+      return Object.assign({}, state, {
+        isAuthenticating: false,
+        isAuthenticated: false,
+        isSigninFail: false,
+        statusText: null
+      })
+      break
+    case types.SIGNOUT_SUCCESS:
+      return Object.assign({}, state, {
+        isAuthenticating: false,
+        isAuthenticated: false,
+        isSigninFail: false,
+        statusText: null
+      })
+      break
+    case types.SIGNOUT_FAILURE:
+      return Object.assign({}, state, {
+        isAuthenticating: false,
+        isAuthenticated: false,
+        isSigninFail: false,
+        statusText: action.error.reason
+      })
       break
   }
   return state

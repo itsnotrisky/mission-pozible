@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 class Header extends Component {
   render () {
@@ -16,16 +16,17 @@ class Header extends Component {
           </div>
           <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="#">Dashboard</a></li>
-              <li><a href="#">Settings</a></li>
-              <li><a href="#">Profile</a></li>
-              <li><a href="#">Help</a></li>
+              <li><a href="#" onClick={this.props.handleSignout}>Signout</a></li>
             </ul>
           </div>
         </div>
       </nav>
     )
   }
+}
+
+Header.propTypes = {
+  handleSignout: PropTypes.func.isRequired
 }
 
 export default Header
